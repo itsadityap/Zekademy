@@ -1,6 +1,8 @@
 const nodemailer = require('nodemailer')
+const emailExport = require('../controllers/auth');
 
-function mail() {
+function mail() 
+{   
     const mailTransporter = nodemailer.createTransport( {
         service:'gmail',
         auth: {
@@ -12,7 +14,7 @@ function mail() {
     
     const options = {
         from:'itsadityap25@gmail.com',
-        to:'201397@juitsolan.in',
+        to: emailExport.emailExport,
         subject:'Test Mail - Zekademy',
         text:"Thank You, For Signing Up to Zekademy"
     }
@@ -30,3 +32,4 @@ function mail() {
 module.exports = {
     mail
 }
+

@@ -3,11 +3,14 @@ const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const mailer = require('../controllers/mailer')
 
+let emailUser = {}
 // Register User
 exports.register = (req, res) => {
 
+    emailUser = req.body.email;
+    
     const errors = validationResult(req);
-
+    
     if(!errors.isEmpty()) {
         return res.status(422).json({
             success: false,
@@ -15,7 +18,6 @@ exports.register = (req, res) => {
         })
     }
 
-    //console.log(req.body);
     const user = new User(req.body)
     user.save((err, user) => {
         if(err) {
@@ -44,6 +46,9 @@ exports.register = (req, res) => {
         });
     })
 }
+
+exports.emailExport = '201397@gmail.com'
+
 
 // Sign In User
 exports.login = (req, res) => {
