@@ -11,11 +11,11 @@ async function getImage (req, res)
     {
         if(image[i].idImage === getURL)
         {
-            res.status(200).json({
-                'Link': image[i].link
-            })
+            return res.redirect(`${image[i].link}`)
         }
     }
+
+    res.status(404).send({message:"Cannot Find Your Image, Make sure you write a correct URL."})
 }
 
 module.exports = {
