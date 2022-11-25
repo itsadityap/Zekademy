@@ -3,72 +3,80 @@
 
 ## Zekademy Assignment (Backend)
 
-A **working api** for creator API platform. Created using NodeJS. 
+A **working api** for Zekademy platform. Created using NodeJS. 
 
-To make it work on your system, clone the repository, then `npm install`. Make an .env file and add six variables `MONGO_DB_URL` , `BUCKET_NAME`, `SECRET`,`AWS_S3_SECRET_ACCESS_KEY`,`AWS_S3_ACCESS_KEY_ID` and `MAIL_PASS` for JWT and AWS.
+
+To make it work on your system, clone the repository, then `npm install`. 
+
+
+Make an .env file and add six variables `MONGO_DB_URL` , `BUCKET_NAME`, `SECRET`,`AWS_S3_SECRET_ACCESS_KEY`,`AWS_S3_ACCESS_KEY_ID` and `MAIL_PASS` for JWT and AWS.
+
+<br>
 
 ### Endpoints
 * ```/api/v1/register``` - Register into the Website
 	
     **Signing Up**
 
-    ![1]()
+    ![1](https://github.com/itsadityap/Zekademy/blob/main/public/1.png?raw=true)
     
 
     **Sign Up Error Handling**
 
-    ![1]()
+    ![1](https://github.com/itsadityap/Zekademy/blob/main/public/2.png?raw=true)
 
 
     <br><br>
-* ```/api/v1/signin``` - Login into the Website
+* ```/api/v1/login``` - Login into the Website
 
     **Logging In**
-    ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/3.png?raw=true)
+    ![1](https://github.com/itsadityap/Zekademy/blob/main/public/3.png?raw=true
+    )
 
     **Login if user does not exist**
-    ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/4.png?raw=true)
+    ![1](https://github.com/itsadityap/Zekademy/blob/main/public/4.png?raw=true)
 
     <br><br>
-* ```/api/v1/signout``` - 
+* ```/api/v1/signout```- 
 Signout of the Website
 
     **Signing Out**
     ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/12.png?raw=true)
 
-
     <br><br>
-* ```/api/v1/alldata``` - Get all users for the home page rendering
+* ```/api/v1/upload``` - Post request for uploading.
 
-    **Get Data of all the users**
-    ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/8.png?raw=true)
+    ![1](https://github.com/itsadityap/Zekademy/blob/main/public/5.png?raw=true)
 
+    
+    **Only logged in users can upload images**
 
-    <br><br>
-* ```/api/v1/donate``` **(protected route)** - Post request for sending
-
-    **Sening Donations if user is Logged In**
-    ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/5.png?raw=true)
-
-    **Sening Donations if user is NOT Logged In**
-    ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/6.png?raw=true)
-
-    **If the creator you want to find is not found was not found in the database**
-    ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/7.png?raw=true)
-
-    **If the user writes his own ID**
-
-    ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/14.png?raw=true)
-
+    ![1](https://github.com/itsadityap/Zekademy/blob/main/public/6.png?raw=true)
     
     <br><br>
     
-* ```/api/v1/getDonation``` **(protected route)** - Post request for returning all donations from a particular creator (who is logged in) to another creators
+* ```/api/v1/getImage/:id``` - Get request for getting image. 
 
-    **Getting all the donation information of the logged In user**
+    **Prompt gets generated as soon as get request is made for the image**
 
-    ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/11.png?raw=true)
+    ![1](https://github.com/itsadityap/Zekademy/blob/main/public/7.png?raw=true)
 
-    **Getting donation information if the user is not Logged in**
+    **If Wrong ID is passed**
 
-    ![1](https://github.com/itsadityap/Creator-Platform-API/blob/main/public/10.png?raw=true)
+    ![1](https://github.com/itsadityap/Zekademy/blob/main/public/8.png?raw=true)
+
+<br><br>
+
+### Database in MongoDB
+
+**Passwords are also hashed in the Database**
+
+![1](https://github.com/itsadityap/Zekademy/blob/main/public/9.png?raw=true)
+
+<br><br>
+
+### AWS Console
+
+**Image uploaded in AWS Console**
+
+![1](https://github.com/itsadityap/Zekademy/blob/main/public/10.png?raw=true)
