@@ -29,12 +29,21 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     }, 
-    imagesID: {
-        type: String
-    },
+    imageID: [{
+        idImage: String,
+        link: String
+    }],
     salt: String
 }, {
     timestamps: true
+});
+
+
+userSchema.set("toJSON", {
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret._id;
+    },
 });
 
 // Virtual field for actual pasword.

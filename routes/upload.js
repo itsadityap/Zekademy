@@ -1,8 +1,11 @@
 const express = require('express');
 const UploadController = require("../controllers/upload")
+const checkAuth = require('../middlewares/check-auth');
 const router = express.Router();
 
-router.post('/upload', upload);
+router.post('/upload',
+             checkAuth,
+             upload);
 
 function upload(req, res){
     UploadController

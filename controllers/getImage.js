@@ -1,17 +1,23 @@
-// import AWS from 'aws-sdk'
-// const User = require('../models/user')
-// const Random = require('../controllers/generateRandomID')
+const User = require('../models/user')
 
-// const s3 = new AWS.S3({
-//     accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
-//     secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
-// })
+async function getImage (req, res) 
+{
+    const getURL = req.params.id;
 
-// async function getImage (req, res) {
-    
-//     res.send()
-// }
+    let id = await User.find();
+    let image = id[0].imageID;
 
-// module.exports = {
-//     getImage
-// }
+    for(let i=0;i<image.length;i++)
+    {
+        if(image[i].idImage === getURL)
+        {
+            res.status(200).json({
+                'Link': image[i].link
+            })
+        }
+    }
+}
+
+module.exports = {
+    getImage
+}
