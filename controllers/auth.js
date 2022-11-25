@@ -1,19 +1,47 @@
 const User = require('../models/user');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-const mailer = require('../controllers/mailer')
+const nodemailer = require('nodemailer')
 
-let emailUser = {}
+let bodyDataEmail = ''
+
+function mail() 
+{   
+    const mailTransporter = nodemailer.createTransport( {
+        service:'gmail',
+        auth: {
+            user:'itsadityap25@gmail.com',
+            pass: process.env.MAIL_PASS
+        }
+      }
+    )
+    console.log(bodyDataEmail);
+    const options = {
+        from:'itsadityap25@gmail.com',
+        to: bodyDataEmail,
+        subject:'Test Mail - Zekademy',
+        text:"Thank You, For Signing Up to Zekademy"
+    }
+    
+    mailTransporter.sendMail(options, (err, info) => {
+        if(err)
+        {   
+            console.log(err);
+            return;
+        }
+        console.log("Sent: " + info.response);
+    })
+}
+
 // Register User
 exports.register = (req, res) => {
-
-    emailUser = req.body.email;
     
+    bodyDataEmail = JSON.stringify(req.body.email)
     const errors = validationResult(req);
     
     if(!errors.isEmpty()) {
         return res.status(422).json({
-            success: false,
+            message: 'failed',
             error: errors.array()[0].msg
         })
     }
@@ -22,7 +50,7 @@ exports.register = (req, res) => {
     user.save((err, user) => {
         if(err) {
             return res.status(400).json({
-                success: false,
+                message: 'failed',
                 error: "Invalid Request! Email or Username already exists!"
             })
         }
@@ -33,10 +61,10 @@ exports.register = (req, res) => {
         // Put token in cookie
         res.cookie('token', token, {expire: new Date() + 9999});
 
-        mailer.mail()
+        mail();
 
         res.json({
-            success: true,
+            message: 'Success',
             token,
             user: 
             {
@@ -47,8 +75,6 @@ exports.register = (req, res) => {
     })
 }
 
-exports.emailExport = '201397@gmail.com'
-
 
 // Sign In User
 exports.login = (req, res) => {
@@ -57,7 +83,7 @@ exports.login = (req, res) => {
 
     if(!errors.isEmpty()) {
         return res.status(422).json({
-            success: false,
+            message: 'failed',
             error: errors.array()[0].msg
         })
     }
@@ -65,13 +91,13 @@ exports.login = (req, res) => {
     User.findOne({email}, (err, user) => {
         if(err || !user) {
             return res.status(400).json({
-                success: false,
+                message: 'failed',
                 error: "Email not found"
             })
         }
         if(!user.authenticate(password)) {
             return res.status(401).json({
-                success: false,
+                message: 'failed',
                 error: "Invalid Credentials"
             })
         }
