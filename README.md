@@ -81,8 +81,7 @@ Signout of the Website
 
 ![1](https://github.com/itsadityap/Zekademy/blob/main/public/10.png?raw=true)
 
+<br><br>
 ### Mail Snapshot
-
-**Image uploaded in AWS Console**
 
 ![1](https://github.com/itsadityap/Zekademy/blob/main/public/12.png?raw=true)
